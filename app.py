@@ -15,7 +15,7 @@ import os
 import glob
 import tqdm
 import pickle
-
+import visualkeras as vk
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
@@ -144,6 +144,7 @@ models = [get_pointnet(get_model_weights_pointnet("model_raw_untrained.keras")),
           get_pointnet(get_model_weights_pointnet("model_raw_trained.keras"))]
 models_names = ["pointnet untrained", "pointnet trained"]
 
+model = models[0]
 
 def decode_request(req):
     encoded = req["image"]
@@ -216,6 +217,14 @@ def classify():
     current_prediction = predict[0]
     return render_template(CLASS_DIR, predict=predict)
 
+
+
+@app.route("/model.png")
+def showModel():
+    global model
+    #keras.utils.plot_model(model = model, to_file="model.png", dpi=400)
+    vk.layered_view(model, to_file='model.png')
+    return send_file("model.png", mimetype='image/png')
 
 @app.route("/upload", methods=["POST"])
 def upload_file():

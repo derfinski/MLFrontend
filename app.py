@@ -1,38 +1,29 @@
 from flask import Flask, redirect
 
-import os
+
 import base64
-import numpy as np
+
 import io
-from PIL import Image
-# for our model
-import tensorflow as tf
-# to retrieve and send back data
+
 from flask import request
-from flask import jsonify
+
 import trimesh
 import os
-import glob
-import tqdm
-import pickle
+
 import visualkeras as vk
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-from sklearn.manifold import TSNE
-from sklearn.metrics import confusion_matrix
+
 from flask import Response
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
 
-import seaborn as sns
 import matplotlib.pyplot as plt
-import matplotlib.ticker as mtick
-from flask import send_from_directory
+
 from flask import send_file, render_template
 from werkzeug.utils import secure_filename
-from mpl_toolkits import mplot3d
+
 
 ALLOWED_EXTENSIONS = set(["off"])
 DATA_DIR = '/content/drive/MyDrive/raw'

@@ -185,7 +185,7 @@ def frontend():
             mesh = trimesh.load(os.path.join(UPLOAD_DIR, 'file.off'))
             points = mesh.sample(2048)
             points = np.expand_dims(points, axis=0)
-            print(points.shape)
+            #print(points.shape)
             predict = model.predict(points)
             current_prediction = predict[0]
 
@@ -203,7 +203,7 @@ def classify():
     mesh = trimesh.load(os.path.join(UPLOAD_DIR, 'file.off'))
     points = mesh.sample(2048)
     points = np.expand_dims(points, axis=0)
-    print(points.shape)
+    #print(points.shape)
     predict = model.predict(points)
     current_prediction = predict[0]
     return render_template(CLASS_DIR, predict=predict)
@@ -222,7 +222,7 @@ def upload_file():
     global model
 
     if request.method == "POST":
-        print(request.form)
+        #print(request.form)
         if not "model" in request.form.keys():
             return "No Model selected"
         model_index = models_names.index(request.form["model"])
@@ -242,4 +242,4 @@ def upload_file():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, host="0.0.0.0")

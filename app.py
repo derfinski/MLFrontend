@@ -126,7 +126,7 @@ def get_pointnet(weights):
     outputs = layers.Dense(NUM_CLASSES, activation="softmax")(x)
 
     model = keras.Model(inputs=inputs, outputs=outputs, name="pointnet")
-    model.summary()
+    #model.summary()
     model.load_weights(weights)
     return model
 
